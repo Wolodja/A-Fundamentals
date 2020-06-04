@@ -12,4 +12,8 @@ export class AppComponent {
     title: "waIt For the LORD",
     isFavorite: true
   }
+
+  onCourseChange(){
+    console.log("Course change");
+  }
 }
