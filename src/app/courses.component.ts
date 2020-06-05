@@ -15,11 +15,11 @@ export class CoursesComponent {
     @Input("title")
     titleText = `the lOrD Of tHe rINGS`;
 
-    @Output()
-    change = new EventEmitter();
+    @Output('change')
+    clickEvent = new EventEmitter();
 
     click() {
-        this.change.emit({ newValue: this.titleText });
+        this.clickEvent.emit({ newValue: this.titleText });
     }
 }
 
