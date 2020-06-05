@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CourseChangeEventArgs } from './courses.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
     isFavorite: true
   }
 
-  onCourseChange(){
-    console.log("Course change");
+  onCourseChange(eventArgs: CourseChangeEventArgs) {
+    console.log("Course change : ", eventArgs);
   }
 }

@@ -12,14 +12,17 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class CoursesComponent {
 
 
-   @Input("title")
-   titleText = `the lOrD Of tHe rINGS`;
+    @Input("title")
+    titleText = `the lOrD Of tHe rINGS`;
 
-   @Output()
-   change = new EventEmitter();
+    @Output()
+    change = new EventEmitter();
 
-   click(){
-       this.change.emit();
-   }
+    click() {
+        this.change.emit({ newValue: this.titleText });
+    }
+}
 
+export interface CourseChangeEventArgs {
+    newValue: string
 }
