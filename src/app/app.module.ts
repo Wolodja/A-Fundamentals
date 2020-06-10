@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoursComponent } from './cours/cours.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CoursComponent } from './cours/cours.component';
     CoursesComponent,
     CoursComponent,
     SummaryPipe,
-    TitlePipe
+    TitlePipe,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
