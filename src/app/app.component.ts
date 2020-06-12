@@ -7,20 +7,12 @@ import { CourseChangeEventArgs } from './courses.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular app';
 
-  post = {
-    title: "waIt For the LORD",
-    isFavorite: true
-  }
+  courses = [2];
 
   tweet = {
     body: 'Here is the body of the tweet',
     isLiked: false,
     likesCount: 23
-  }
-
-  onCourseChange(eventArgs: CourseChangeEventArgs) {
-    console.log("Course change : ", eventArgs);
   }
 }
