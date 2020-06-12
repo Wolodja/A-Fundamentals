@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CourseChangeEventArgs } from './courses.component';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,11 @@ import { CourseChangeEventArgs } from './courses.component';
 })
 export class AppComponent {
 
-  courses = [1, 2, 3];
-
   tweet = {
     body: 'Here is the body of the tweet',
     isLiked: false,
     likesCount: 23
   }
+
+  viewMode = 'somethingElse';
 }
