@@ -8,7 +8,7 @@ import { CourseChangeEventArgs } from './courses.component';
 })
 export class AppComponent {
 
-  courses = [2];
+  courses = [1, 2, 3];
 
   tweet = {
     body: 'Here is the body of the tweet',
