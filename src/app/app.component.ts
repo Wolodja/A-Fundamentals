@@ -7,11 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  tweet = {
-    body: 'Here is the body of the tweet',
-    isLiked: false,
-    likesCount: 23
-  }
-
-  viewMode = 'somethingElse';
+  courses = [
+    { id: 1, name: 'course1' },
+    { id: 2, name: 'course2' },
+    { id: 3, name: 'course3' },
+  ]
 }
