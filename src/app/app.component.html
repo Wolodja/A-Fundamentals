@@ -1,5 +1,8 @@
+<button (click)="onAdd()">Add course</button>
 <ul>
     <li *ngFor="let course of courses; index as i; even as isEven">
         {{ i }} - {{course.name}} <span *ngIf="isEven">(EVEN)</span>
+        <button (click)="onChange(course)">Update</button>
+        <button (click)="onRemove(course)">Remove</button>
     </li>
 </ul>
