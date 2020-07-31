@@ -1,5 +1,5 @@
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-new-course-form',
@@ -8,22 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCourseFormComponent {
 
-  form = new FormGroup({
-    topics: new FormArray([])
-  });
+  form;
+  constructor(fb: FormBuilder) {
 
-  addTopic(topic: HTMLInputElement){
-    this.topics.push(new FormControl(topic.value));
-    topic.value = '';
+    this.form = fb.group({
+      name: [],
+      contact: fb.group({
+        email: [],
+        phone: []
+      }),
+      topics: fb.array([])
+    });
   }
-
-  removeTopic(topic: FormControl){
-    let index = this.topics.controls.indexOf(topic);
-    this.topics.removeAt(index);
-  }
-
-  get topics() {
-    return this.form.get('topics') as FormArray;
-  }
-
 }
