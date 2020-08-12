@@ -30,12 +30,18 @@ export class PostsComponent {
   }
 
   updatePost(post) {
-
-    console.log(post.id);
     this.http.patch(this.url + '/' + post.id, { title: 'New Title' })
       .subscribe(response => {
         post.title = response['title'];
       });
+  }
+
+  deletePost(post){
+    this.http.delete(this.url + '/' + post.id)
+      .subscribe(response => {
+        let index = this.posts.indexOf(post);
+        this.posts.splice(index, 1);
+      })
   }
 
 
