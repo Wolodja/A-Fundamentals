@@ -22,8 +22,8 @@ export class PostsService {
     return this.http.patch(this.url + '/' + post.id, { title: 'New Title' });
   }
 
-  deletePost(post){
-    return this.http.delete(this.url + '/' + post.id);
+  deletePost(postId){
+    return this.http.delete(this.url + '/' + postId);
   }
 
 }
