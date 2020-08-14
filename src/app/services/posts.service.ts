@@ -1,9 +1,11 @@
+import { BadInput } from './../common/bad-input';
 import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { error } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,15 @@ export class PostsService {
   }
 
   createPost(post) {
-    return this.http.post(this.url, post);
+    return this.http.post(this.url, post).pipe(
+      catchError((error: Response) => {
+        if (error.status === 400) {
+          return throwError(new BadInput(error));
+        } else {
+          return throwError(new AppError(error));
+        }
+      })
+    );
   }
 
   updatePost(post) {
