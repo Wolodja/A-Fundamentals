@@ -1,3 +1,4 @@
+import { error } from 'protractor';
 import { BadInput } from './../common/bad-input';
 import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
@@ -16,35 +17,28 @@ export class PostsService {
   constructor(private http: HttpClient) { }
 
   getPosts() {
-    return this.http.get<any[]>(this.url);
+    return this.http.get<any[]>(this.url).pipe(catchError(this.handleError));
   }
 
   createPost(post) {
-    return this.http.post(this.url, post).pipe(
-      catchError((error: Response) => {
-        if (error.status === 400) {
-          return throwError(new BadInput(error));
-        } else {
-          return throwError(new AppError(error));
-        }
-      })
-    );
+    return this.http.post(this.url, post).pipe(catchError(this.handleError));
   }
 
   updatePost(post) {
-    return this.http.patch(this.url + '/' + post.id, { title: 'New Title' });
+    return this.http.patch(this.url + '/' + post.id, { title: 'New Title' }).pipe(catchError(this.handleError));
   }
 
   deletePost(postId) {
-    return this.http.delete(this.url + '/' + postId)
-      .pipe(catchError(
-        (error: Response) => {
-          if (error.status === 404) {
-            return throwError(new NotFoundError(error));
-          } else {
-            return throwError(new AppError(error));
-          }
-        }
-      ));
+    return this.http.delete(this.url + '/' + postId).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: Response) {
+    if (error.status === 400)
+      return throwError(new BadInput(error));
+
+    if (error.status === 404)
+      return throwError(new NotFoundError(error));
+
+    return throwError(new AppError(error));
   }
 }
