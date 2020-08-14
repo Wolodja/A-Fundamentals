@@ -16,7 +16,7 @@ export class PostsComponent implements OnInit {
   constructor(private service: PostsService) { }
 
   ngOnInit() {
-    this.service.getPosts()
+    this.service.getAll()
       .subscribe(
         response => {
           this.posts = response;
@@ -27,7 +27,7 @@ export class PostsComponent implements OnInit {
     let post = { title: input.value };
     input.value = '';
 
-    this.service.createPost(post)
+    this.service.create(post)
       .subscribe(
         response => {
           this.posts.splice(0, 0, response);
@@ -41,7 +41,7 @@ export class PostsComponent implements OnInit {
   }
 
   updatePost(post) {
-    this.service.updatePost(post)
+    this.service.update(post)
       .subscribe(
         response => {
           post.title = response['title'];
@@ -49,7 +49,7 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post) {
-    this.service.deletePost(post.id)
+    this.service.delete(post.id)
       .subscribe(
         response => {
           let index = this.posts.indexOf(post);
