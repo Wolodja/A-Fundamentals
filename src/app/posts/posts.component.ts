@@ -1,3 +1,5 @@
+import { NotFoundError } from './../common/not-found-error';
+import { AppError } from './../common/app-error';
 import { PostsService } from './../services/posts.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -59,8 +61,8 @@ export class PostsComponent implements OnInit {
           let index = this.posts.indexOf(post);
           this.posts.splice(index, 1);
         },
-        (error: Response) => {
-          if (error.status === 404) {
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
             alert('This post has been deleted!');
           } else {
             alert('An unexpected error occured!');
