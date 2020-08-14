@@ -3,7 +3,6 @@ import { NotFoundError } from './../common/not-found-error';
 import { AppError } from './../common/app-error';
 import { PostsService } from './../services/posts.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -21,10 +20,6 @@ export class PostsComponent implements OnInit {
       .subscribe(
         response => {
           this.posts = response;
-        },
-        error => {
-          alert('An unexpected error occured!');
-          console.log(error);
         });
   }
 
@@ -38,11 +33,10 @@ export class PostsComponent implements OnInit {
           this.posts.splice(0, 0, response);
         },
         error => {
-          if (error instanceof BadInput) {
+          if (error instanceof BadInput)
             alert(error.originalError);
-          } else {
-            alert('An unexpected error appeared!');
-          }
+          else
+            throw error;
         });
   }
 
@@ -51,10 +45,6 @@ export class PostsComponent implements OnInit {
       .subscribe(
         response => {
           post.title = response['title'];
-        },
-        error => {
-          alert('An unexpected error occured!');
-          console.log(error);
         });
   }
 
@@ -66,12 +56,10 @@ export class PostsComponent implements OnInit {
           this.posts.splice(index, 1);
         },
         (error: AppError) => {
-          if (error instanceof NotFoundError) {
+          if (error instanceof NotFoundError)
             alert('This post has been deleted!');
-          } else {
-            alert('An unexpected error occured!');
-          }
-        }
-      );
+          else
+            throw error;
+        });
   }
 }
