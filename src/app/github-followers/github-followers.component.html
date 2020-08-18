@@ -3,7 +3,11 @@
         <img src="{{follower.avatar_url}}" class="avatar align-self-start mr-3" alt="...">
     </div>
     <div class="media-body">
-        <h5 class="mt-0">{{ follower.login }}</h5>
+        <h5 class="mt-0">
+            <a [routerLink]="['/followers', follower.id]">
+                {{ follower.login }}
+            </a>
+        </h5>
         <a href="{{follower.html_url}}">{{ follower.html_url }}</a>
     </div>
 </div>
